@@ -21,7 +21,7 @@ jobs:
         run: |
           git fetch origin main:main
 
-          pr_list=$(git log --pretty=format:"| %ad | %h | %s | `%an`` | %ae |" --date=format-local:"%y-%m-%d %H:%M" main..dev)
+          pr_list=$(git log --pretty=format:"| %ad | %h | %s | \`%an\` | %ae |" --date=format-local:"%y-%m-%d %H:%M" main..dev)
           pr_owner=$(git log --pretty=format:"%an" --date=format-local:"%y-%m-%d %H:%M" main..dev | tail -n 1)
           pr_title="PR TITLE"
 
