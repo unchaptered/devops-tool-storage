@@ -21,26 +21,22 @@ jobs:
         run: |
           git fetch origin main:main
 
-          pr_list=$(git log --pretty=format:"| %ad | %h | %s | %an | %ae |" --date=format-local:"%y-%m-%d %H:%M" main..dev)
+          pr_list=$(git log --pretty=format:"| %ad | %h | %s | `%an`` | %ae |" --date=format-local:"%y-%m-%d %H:%M" main..dev)
           pr_owner=$(git log --pretty=format:"%an" --date=format-local:"%y-%m-%d %H:%M" main..dev | tail -n 1)
-          pr_title="제목을 변경해주세요."
+          pr_title="PR TITLE"
 
           pr_body_attributers=$(git log --pretty=format:"%an" --date=format-local:"%y-%m-%d %H:%M" main..dev | sort -u | tr '\n' ', ' | sed 's/,$//')
 
-
-
-          #################################################
-          # Body 동적 생성                                #
+          ## Create Body
           pr_body="
-            [Title] Change this title  \n
-            [Contributor] $pr_body_attributers  \n
-            [Content] \n
+            [Title] Change this title
+            [Contributor] $pr_body_attributers 
+            [Content]
 
-            | ID             | COMMENT                                 | \n
-            | -------------- | ----------------------------------------| \n
+            | ID             | COMMENT                                 | MSG | USER |
+            | -------------- | ----------------------------------------| --- | ---- |
             $pr_list
           "
-          #################################################
 
           #################################################
           # Dynamic Label                                 #
