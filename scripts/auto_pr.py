@@ -182,7 +182,7 @@ def updatePullRequest(
     hasAssignee = len(assigneeList) > 0
     if hasAssignee:
         assignee = TK.join(assigneeList)
-        splitedCommand.extend(['--add-assignee', assignee])
+        splitedCommand.extend(['--add-assignee', 'unchaptered'])
 
     isSuccess, outStr, errStr = splitRunner(splitedCommand=splitedCommand)
     print('outStr : ', outStr)
