@@ -185,6 +185,8 @@ def updatePullRequest(
         splitedCommand.extend(['--add-assignee', assignee])
 
     isSuccess, outStr, errStr = splitRunner(splitedCommand=splitedCommand)
+    print('outStr : ', outStr)
+    print('errStr : ', errStr)
 
 
 def createPullRequest(
