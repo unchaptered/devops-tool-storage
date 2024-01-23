@@ -3,8 +3,6 @@ name: PR 생성 자동화
 on:
   push:
     branches: ["dev"]
-  # pull_request:
-  #   types: ["opened"]
 
 jobs:
   create-pr:
@@ -21,78 +19,6 @@ jobs:
         run: |
           git fetch origin main:main
 
-          pr_list=$(git log --pretty=format:"| %ad | %h | %s | \`%an\` | %ae |" --date=format-local:"%y-%m-%d %H:%M" main..dev)
-          pr_owner=$(git log --pretty=format:"%an" --date=format-local:"%y-%m-%d %H:%M" main..dev | tail -n 1)
-          pr_title="PR TITLE"
+          git log main..dev
 
-          pr_body_attributers=$(git log --pretty=format:"%an" --date=format-local:"%y-%m-%d %H:%M" main..dev | sort -u | tr '\n' ', ' | sed 's/,$//')
-
-          ## Create Body
-          pr_body="
-            [Title] Change this title
-            [Contributor] $pr_body_attributers 
-            [Content]
-
-            | ID             | COMMENT                                 | MSG | USER |
-            | -------------- | ----------------------------------------| --- | ---- |
-            $pr_list
-          "
-
-          #################################################
-          # Dynamic Label                                 #
-          # 대소문자 무시를 위한 확장 정규표현식 패턴 설정    #
-          shopt -s nocasematch 
-
-          pr_label=("bug")
-          if [[ $pr_list =~ fix ]]; then
-            pr_label+=("bug")
-          fi
-          if [[ $pr_list =~ (create|update|feat) ]]; then
-            pr_label+=("enhancement")
-          fi
-          if [[ $pr_list =~ (delete|remove) ]]; then
-            pr_label+=("duplicate")
-          fi
-          #################################################
-
-          echo "$pr_label"
-          echo "gh pr create --base main --head dev --title "$pr_title" --assignee "$pr_owner" --body "$pr_body" --label "$pr_label""
-          gh pr create --base main            \
-                       --head dev             \
-                       --title "$pr_title"    \
-                       --assignee "$pr_owner" \
-                       --body "$pr_body"      \
-                       --label "$pr_label"
-
-#$ git log --oneline main..dev | awk '{print "ID  : ", $1; $1=""; gsub(/^[\s\t]+|[\s\t]+$/, "", $0); print $1}'^C
-
-# $git log --oneline main..dev | awk '{print "| ID  | ", $1, " | "; $1=""; gsub(/^\s|^\t|\s$|\t$/, "", $0); print "| MSG | ", $0, " | "}'
-# | ID  |  905a60a  |
-# | MSG |  Update : ubuntu-20.04 to ubuntu-22.04  |
-# | ID  |  941f002  |
-# | MSG |  Update : ubuntu-20.04 to ubuntu-22.04  |
-# | ID  |  ecedea2  |
-# | MSG |  Remove : miss github action workflows  |
-
-# $ git log --oneline main..dev | sed 's/ / | /1' | awk '{print "|", $0, "|"}'
-# | 905a60a | Update : ubuntu-20.04 to ubuntu-22.04 |
-# | 941f002 | Update : ubuntu-20.04 to ubuntu-22.04 |
-# | ecedea2 | Remove : miss github action workflows |
-
-# $ echo "| ID             | COMMENT                                 |"
-# $ echo "| -------------- | ----------------------------------------|"
-# $ git log --oneline main..dev | sed 's/ / | /1' | awk '{print "|", $0, "|"}'
-
-# | ID             | COMMENT                                 |
-# | -------------- | ----------------------------------------|
-# | 905a60a | Update : ubuntu-20.04 to ubuntu-22.04 |
-# | 941f002 | Update : ubuntu-20.04 to ubuntu-22.04 |
-# | ecedea2 | Remove : miss github action workflows |
-
-# $ echo "| ID             | COMMENT                                 |"
-# $ echo "| -------------- | ----------------------------------------|"
-# $ git log --pretty=format:"| %ad | %h | %s | %an | %ae |" --date=format-local:"%y-%m-%d %H:%M" main..dev
-# | 23-10-24 12:52 | 905a60a | Update : ubuntu-20.04 to ubuntu-22.04 | Kevin-edint | unchaptered@edint.io |
-# | 23-10-24 12:52 | 941f002 | Update : ubuntu-20.04 to ubuntu-22.04 | Kevin-edint | unchaptered@edint.io |
-# | 23-10-24 12:45 | ecedea2 | Remove : miss github action workflows | Kevin-edint | unchaptered@edint.io |
-
+          python ./scripts/auto_pr.py
