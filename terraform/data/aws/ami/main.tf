@@ -1,5 +1,4 @@
-
-data "aws_ami" "aws_ami_module" {
+data "aws_ami" "datasource" {
   most_recent = true
   owners      = var.owners
 
