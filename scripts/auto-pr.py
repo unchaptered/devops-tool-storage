@@ -67,7 +67,7 @@ def getPullRequestTemplate(
     # [B] PR Body 생성
     splitedCommand = [
         'git', 'log',
-        f'--pretty=format:"- [%ad] [%h]\n- [%s] [%an]"',
+        f'--pretty=format:"- [%ad] [%h]\n- %s [%an](%ae)"',
         f'--date=format-local:%y-%m-%d %H:%M',
         f'{base}..{head}'
     ]
