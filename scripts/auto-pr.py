@@ -79,11 +79,11 @@ def getPullRequestTemplate(
     print(out)
 
     pullRequestBody = f"""
-[제목] [가제] 변경 필요
-[기여자] {','.join(commiterList)}
-[내용]
+[Title] [temp] need to change
+[Contributor] {','.join(commiterList)}
+[Context]
 
-| 시간 | 커밋 ID | 커밋 제목 | 기여자 이름 | 기여자 Email |
+| Timestamp | Commit ID | Commit Message | Contrib Username | Contrib Email |
 | --------- | --------- | ---------- | ----------- | --------- |"""
     commitList = out.split('\n')
     for commit in commitList:
@@ -111,7 +111,7 @@ def getPullRequestTemplate(
     labelList = list(set(labelList))
 
     githubPrTemplate: GitHubPrTemplate = {
-        'title': '[가제] 변경 필요',
+        'title': '[temp] need to change',
         'body': pullRequestBody,
         'labelList': labelList,
         'assigneeList': commiterList
