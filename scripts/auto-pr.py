@@ -68,7 +68,7 @@ def getPullRequestTemplate(
     splitedCommand = [
         'git', 'log',
         f'--pretty=format:"- `%ad` %h\n- **%s** [%an](%ae)"',
-        f'--date=format-local:%y-%m-%d %H:%M',
+        f'--date=format-local:%y-%m-%d',
         f'{base}..{head}'
     ]
     print("✅✅✅")
