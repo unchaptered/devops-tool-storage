@@ -12,7 +12,7 @@ variable "schedule_expression" {
 }
 
 
-variable "flexible_time_window_object" {
+variable "flexible_time_window_block" {
   type = object({
     mode = string
   })
@@ -21,13 +21,13 @@ variable "flexible_time_window_object" {
   }
 }
 
-variable "target" {
+variable "target_block" {
   type = object({
     arn      = string
     role_arn = string
     input    = string
   })
-  default = {
-    input = null
-  }
+  # default = {
+  #   input = null
+  # }
 }
