@@ -5,12 +5,12 @@ resource "aws_scheduler_schedule" "resource" {
   schedule_expression = var.schedule_expression
 
   flexible_time_window {
-    mode = var.flexible_time_window.mode
+    mode = var.flexible_time_window_block.mode
   }
 
   target {
-    arn      = var.target.arn
-    role_arn = var.target.role_arn
-    input    = var.target.role_input != null ? jsonencode(var.target.role_input) : null
+    arn      = var.target_block.arn
+    role_arn = var.target_block.role_arn
+    input    = var.target_block.input != null ? jsonencode(var.target_block.input) : null
   }
 }
