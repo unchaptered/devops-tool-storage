@@ -7,33 +7,36 @@ resource "aws_cloudfront_distribution" "resource" {
   is_ipv6_enabled     = var.is_ipv6_enabled
   default_root_object = var.default_root_object
   tags                = var.tags
-  origin {
-    origin_id   = var.origin_dto.origin_id
-    domain_name = var.origin_dto.domain_name
 
-    origin_access_control_id = var.origin_dto.origin_access_control_id # "var.origin_access_control_id"
+  origin {
+    origin_id                = var.origin_block.origin_id
+    domain_name              = var.origin_block.domain_name
+    origin_access_control_id = var.origin_block.origin_access_control_id # "var.origin_access_control_id"
   }
 
   default_cache_behavior {
 
-    compress               = var.default_cache_behavior.compress               # false
-    cache_policy_id        = var.default_cache_behavior.cache_policy_id        # "658327ea-f89d-4fab-a63d-7e88639e58f6"
-    viewer_protocol_policy = var.default_cache_behavior.viewer_protocol_policy # "allow-all""
-    min_ttl                = var.default_cache_behavior.min_ttl                # 0
-    default_ttl            = var.default_cache_behavior.default_ttl            # 3600
-    max_ttl                = var.default_cache_behavior.max_ttl                # 86400
-    allowed_methods        = var.default_cache_behavior.allowed_methods        # ["GET", "HEAD", "OPTIONS"]"
-    cached_methods         = var.default_cache_behavior.cached_methods         # ["GET", "HEAD", "OPTIONS"]"
-    target_origin_id       = var.default_cache_behavior.target_origin_id       # "S3Origin""
-    trusted_key_groups     = var.default_cache_behavior.trusted_key_groups     # 
+    compress               = var.default_cache_behavior_block.compress               # false
+    cache_policy_id        = var.default_cache_behavior_block.cache_policy_id        # "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    viewer_protocol_policy = var.default_cache_behavior_block.viewer_protocol_policy # "allow-all""
+
+    min_ttl     = var.default_cache_behavior_block.min_ttl     # 0
+    default_ttl = var.default_cache_behavior_block.default_ttl # 3600
+    max_ttl     = var.default_cache_behavior_block.max_ttl     # 86400
+
+    allowed_methods = var.default_cache_behavior_block.allowed_methods # ["GET", "HEAD", "OPTIONS"]"
+    cached_methods  = var.default_cache_behavior_block.cached_methods  # ["GET", "HEAD", "OPTIONS"]"
+
+    target_origin_id   = var.default_cache_behavior_block.target_origin_id   # "S3Origin""
+    trusted_key_groups = var.default_cache_behavior_block.trusted_key_groups # 
 
     dynamic "forwarded_values" {
-      for_each = var.default_cache_behavior.is_enabled_forwarded_values ? [1] : []
+      for_each = var.default_cache_behavior_block.is_enabled_forwarded_values ? [1] : []
 
       content {
-        query_string = var.default_cache_behavior.query_string
+        query_string = var.default_cache_behavior_block.query_string
         cookies {
-          forward = var.default_cache_behavior.cookies_foward
+          forward = var.default_cache_behavior_block.cookies_foward
         }
       }
     }
@@ -46,9 +49,9 @@ resource "aws_cloudfront_distribution" "resource" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = "var.aws_cf_distribution_default_cache_behavior_view_certificate_cloudfront_default_certificate # true"
-    acm_certificate_arn            = "var.aws_cf_distribution_default_cache_behavior_view_certificate_acm_certificate_arn"
-    ssl_support_method             = "var.aws_cf_distribution_default_cache_behavior_view_certificate_ssl_support_method"
+    cloudfront_default_certificate = var.viewer_certificate_block.cloudfront_default_certificate
+    acm_certificate_arn            = var.viewer_certificate_block.acm_certificate_arn
+    ssl_support_method             = var.viewer_certificate_block.ssl_support_method
   }
 
   dynamic "custom_error_response" {

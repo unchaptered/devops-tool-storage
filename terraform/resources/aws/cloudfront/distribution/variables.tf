@@ -64,27 +64,29 @@ variable "tags" {
   type = map(any)
 }
 
-variable "origin_dto" {
+variable "origin_block" {
   type = object({
     origin_id                = string
     domain_name              = string
     origin_access_control_id = string
   })
-  description = "resource.aws_cloudfront_distribution.~.origin block"
 }
 
-variable "default_cache_behavior" {
+variable "default_cache_behavior_block" {
   type = object({
     compress               = string
     cache_policy_id        = string
     viewer_protocol_policy = string
-    min_ttl                = string
-    default_ttl            = string
-    max_ttl                = string
-    allowed_methods        = string
-    cached_methods         = string
-    target_origin_id       = string
-    trusted_key_groups     = string
+
+    min_ttl     = string
+    default_ttl = string
+    max_ttl     = string
+
+    allowed_methods = list(string)
+    cached_methods  = list(string)
+
+    target_origin_id   = string
+    trusted_key_groups = list(string)
 
     is_enabled_forwarded_values = bool
     query_string                = bool
@@ -101,7 +103,7 @@ variable "default_cache_behavior" {
     max_ttl     = 86400
 
     allowed_methods = ["GET", "HEAD", "OPTIONS"]
-    cached_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods  = ["GET", "HEAD"]
 
     target_origin_id   = "S3Origin"
     trusted_key_groups = []
@@ -127,7 +129,7 @@ variable "restrictions" {
 
 }
 
-variable "viewer_certificate" {
+variable "viewer_certificate_block" {
   type = object({
     cloudfront_default_certificate = bool
     acm_certificate_arn            = string
