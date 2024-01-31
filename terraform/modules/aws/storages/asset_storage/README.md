@@ -13,7 +13,7 @@ Some kind of assets must be access at any time.
 
 - Input
 
-```tfvars
+```shell
 prefix="each_resource.tags.Name에 붙을 접두사"
 suffix="each_resource.tags.Name에 붙을 접미사"
 
@@ -25,18 +25,21 @@ tags={}
 
 - Output
 
-```
-s3_bucket.bucket_name = "${prefix}-${bucket_name}-${suffix}"
-s3_bucket.bucket_tags = merge(var.tags, {
-    Name = "${prefix}-${bucket_name}-${suffix}"
-})
+```shell
+s3_bucket.bucket_name="${prefix}-s3-${bucket_name}-${suffix}"
+s3_bucket.bucket_tags=merge(
+    var.tags,
+    {
+        Name = "${prefix}-${bucket_name}-${suffix}" 
+    }
+)
 ```
 
 ## For Example
 
 - Input
 
-```tfvars
+```shell
 prefix="kevin-prod"
 suffix="ap-ne-2"
 bucket_name="asset_storage"
@@ -47,7 +50,7 @@ tags={
 
 - Ouptut
 
-```
+```shell
 s3_bucket.bucket_name = "kevin-prod-asset_storage-ap-ne-2"
 s3_bucket.bucket_tags = merge(var.tags, {
     Name = "kevin-prod-asset_storage-ap-ne-2"
