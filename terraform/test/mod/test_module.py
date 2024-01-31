@@ -44,7 +44,7 @@ class TestModule:
         processResult = await self.processModule.execAsync(cwd=testDir,
                                                            orgCommand=command)
         stdout, stderr = processResult
-        print('❎ : ', testDir, stdout, stderr)
+        print('⭕ : ', testDir, len(stdout), len(stderr))
 
         return 'A'
 
