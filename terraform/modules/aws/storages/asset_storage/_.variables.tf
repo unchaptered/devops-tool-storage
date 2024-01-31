@@ -1,3 +1,4 @@
+# [Provider]
 variable "profile" {
   type        = string
   description = "aws configuration profile name"
@@ -8,13 +9,8 @@ variable "region" {
   description = "aws configuration region name"
 }
 
-variable "bucket_name" {
-  type = string
-}
 
-variable "tags" {
-  type = map(any)
-}
+# [Structure]
 variable "prefix" {
   type        = string
   description = <<-DESCRIPTION
@@ -45,4 +41,14 @@ variable "suffix" {
     condition     = can(regex("^[a-z0-9\\-]{4,71}$", var.suffix))
     error_message = "var.suffix must be 10 with lowercase eng"
   }
+}
+
+
+# [Resource]
+variable "bucket_name" {
+  type = string
+}
+
+variable "tags" {
+  type = map(any)
 }
