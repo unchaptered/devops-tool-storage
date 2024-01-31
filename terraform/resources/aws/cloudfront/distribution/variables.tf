@@ -108,6 +108,8 @@ variable "default_cache_behavior_block" {
     target_origin_id   = "S3Origin"
     trusted_key_groups = []
 
+
+
     is_enabled_forwarded_values = false
     query_string                = false
     cookies_foward              = "none"
@@ -142,7 +144,7 @@ variable "viewer_certificate_block" {
   }
 }
 
-variable "custom_error_response" {
+variable "custom_error_responses" {
   type = list(object({
     error_caching_min_ttl = number
     error_cod             = number
