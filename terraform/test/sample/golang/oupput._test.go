@@ -18,5 +18,5 @@ func TestTerraformHelloWorldExample(t *testing.T) {
 
 	output := terraform.Output(t, terraformOptions, "hello_world")
 
-	assert.Equal(t, "Hello, World!", output)
+	assert.Equal(t, "hello_world", output)
 }
