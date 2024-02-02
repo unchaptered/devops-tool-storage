@@ -40,3 +40,12 @@ golangci-lint linters
 ```shell
 
 ```
+
+### 2.a. Terratest Sample
+
+```shell
+go list ./... | findstr sample      # Windows
+go list ./... | grep sample         # Ubuntu, Mac
+
+go test -v <ModuleName>/<FilePath>
+```
