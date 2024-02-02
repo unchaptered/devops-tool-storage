@@ -1,6 +1,15 @@
+[Common]
+.log
+*.log
+**.log
+
 [Terraform]
 .terraform
 .terraform.lock.hcl
+
+[Terratest]
+report.json
+**/report.json
 
 [Python]
 __pycache__

@@ -1,0 +1,46 @@
+run:
+  # cncurrency: 4
+  timeout: 1m
+  # issue-exit-code: 1
+
+  tests: false
+  skip-dirs-use-default: true
+
+output:
+  format: json
+
+  print-issued-lines: true
+  print-linter-name: true
+  uniq-by-line: true
+  sort-results: true
+
+  path-prefix: ''
+
+linters:
+
+  disable-all: true
+  enable-all: false
+
+  presets:
+    - bugs
+    - comment
+    - complexity
+    - error
+    - format
+    - import
+    - metalinter
+    - module
+    - performance
+    - sql
+    - style
+    - test
+    - unused
+
+  # enable:
+  # -
+  # disable:
+  # -
+  # presets:
+  # -
+
+  fast: true
