@@ -1,5 +1,13 @@
 # Terratest
 
+## 0. Prerequisites
+
+### 0.a. GoLang
+
+```shell
+choco install golang
+```
+
 
 ## 1. Linter (golangci-lint)
 

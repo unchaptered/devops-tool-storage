@@ -18,5 +18,6 @@ Provisioning, Configuration, Management by Terraform
 
 - Terraform `choco install terraform`
 
+- Golang `choco install go`
 - Terragrunt `choco install terragrunt` `Banned`
-- Terratest `choco install terratest` `Banned`
+- Terratest, require golang
