@@ -13,3 +13,5 @@ report.json
 
 [Python]
 __pycache__
+[Vagrant]
+.vagrant
