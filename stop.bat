@@ -1,0 +1,1 @@
+./anaconda/stop.bat

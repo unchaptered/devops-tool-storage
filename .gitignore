@@ -1,6 +1,21 @@
+[Common]
+.log
+*.log
+**.log
+
 [Terraform]
 .terraform
 .terraform.lock.hcl
 
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/terraform.tfstate.*
+
+[Terratest]
+report.json
+**/report.json
+
 [Python]
 __pycache__
+[Vagrant]
+.vagrant

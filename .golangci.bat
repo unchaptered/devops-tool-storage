@@ -1,0 +1,1 @@
+golangci-lint run --config .golangci.yml > .golangci.log 2>&1

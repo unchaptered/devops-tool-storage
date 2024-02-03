@@ -11,3 +11,13 @@ Provisioning, Configuration, Management by Terraform
 5. [Resources TF](./resources/README.md)
 6. [Services TF](./services/README.md)
 7. [Test TF](./test/README.md)
+7. [TestCLI TF](./test_cli/README.md)
+
+
+## Dependencies
+
+- Terraform `choco install terraform`
+
+- Golang `choco install go`
+- Terragrunt `choco install terragrunt` `Banned`
+- Terratest, require golang
