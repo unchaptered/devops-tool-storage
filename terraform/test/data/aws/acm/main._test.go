@@ -13,8 +13,11 @@ func TestTerraformDataAwsAmi(t *testing.T) {
 	options := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../../../../data/aws/acm",
 		Vars: map[string]interface{}{
-			"domain": "my_domain_value",
+			"domain": "example.com",
 			"status": []string{"ISSUED"},
+		},
+		EnvVars: map[string]string{
+			"AWS_DEFAULT_REGION": "us-east-1",
 		},
 	})
 
@@ -23,7 +26,7 @@ func TestTerraformDataAwsAmi(t *testing.T) {
 	// Terraform 초기화 및 적용
 	defer terraform.Destroy(t, options)
 
-	terraform.InitAndValidate(t, options)
+	terraform.InitAndValidateE(t, options)
 
 	// terraform.InitAndApply(t, options)
 

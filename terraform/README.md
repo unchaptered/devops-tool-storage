@@ -21,3 +21,20 @@ Provisioning, Configuration, Management by Terraform
 - Golang `choco install go`
 - Terragrunt `choco install terragrunt` `Banned`
 - Terratest, require golang
+
+
+## Scripts
+
+- ShellScript
+
+```shell
+go run -v $(go list ./...)
+go test -v $(go list ./...)
+```
+
+- Cmd
+
+```cmd
+for /f %i in ('go list ./...') do go run -v %i
+for /f %i in ('go list ./...') do go test -v %i
+```
