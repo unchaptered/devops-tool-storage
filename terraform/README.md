@@ -37,4 +37,5 @@ go test -v $(go list ./...)
 ```cmd
 for /f %i in ('go list ./...') do go run -v %i
 for /f %i in ('go list ./...') do go test -v %i
+for /f %i in ('go list ./...') do go test -coverprofile=coverage.out -v %i
 ```
