@@ -6,18 +6,22 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestTerraformDataAwsAmi(t *testing.T) {
+func TestTerraformDataAwsAcm(t *testing.T) {
 	t.Parallel()
+
+	mockDomainName := "example.com"
+	mockStatus := []string{"ISSUED"}
+	mockProviderRegion := "us-east-1"
 
 	// 테스트 옵션을 설정합니다.
 	options := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: "../../../../data/aws/acm",
 		Vars: map[string]interface{}{
-			"domain": "example.com",
-			"status": []string{"ISSUED"},
+			"domain": mockDomainName,
+			"status": mockStatus,
 		},
 		EnvVars: map[string]string{
-			"AWS_DEFAULT_REGION": "us-east-1",
+			"AWS_DEFAULT_REGION": mockProviderRegion,
 		},
 	})
 
@@ -26,7 +30,7 @@ func TestTerraformDataAwsAmi(t *testing.T) {
 	// Terraform 초기화 및 적용
 	defer terraform.Destroy(t, options)
 
-	terraform.InitAndValidateE(t, options)
+	terraform.Init(t, options)
 
 	// terraform.InitAndApply(t, options)
 
