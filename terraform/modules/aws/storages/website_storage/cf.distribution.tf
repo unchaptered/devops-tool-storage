@@ -5,9 +5,9 @@ module "cf_dist_website" {
   is_ipv6_enabled     = true
   default_root_object = "/index.html"
   price_class         = "PriceClass_100"
+  comment             = "${var.prefix}-cf-${var.bucket_name}-${var.suffix}"
   aliases             = var.cf_dist_aliases
-  comment             = "${var.prefix}-cf-${var.module_name}-${var.suffix}"
-  tags                = {}
+  tags                = var.cf_dist_tags
 
   origin_block = {
     origin_id                = module.s3_bucket.id
@@ -16,7 +16,7 @@ module "cf_dist_website" {
   }
 
   viewer_certificate_block = {
-    acm_certificate_arn            = var.module_certificate_arn
+    acm_certificate_arn            = var.cf_dist_certificate_arn
     ssl_support_method             = "sni-only"
     cloudfront_default_certificate = true
   }

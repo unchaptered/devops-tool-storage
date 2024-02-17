@@ -44,18 +44,10 @@ variable "suffix" {
 }
 
 # [Resources]
-variable "module_name" {
-  type = string
-}
-variable "module_certificate_arn" {
-  type = string
-}
+variable "bucket_name" { type = string }
+variable "cf_dist_aliases" { type = list(string) }
+variable "cf_dist_certificate_arn" { type = string }
 
-variable "cf_dist_aliases" {
-  type = list(string)
-}
-
-variable "tags" {
-  type = map(any)
-}
+variable "bucket_tags" { type = map(any) }
+variable "cf_dist_tags" { type = map(any) }
 
