@@ -6,9 +6,9 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func Test_Terraform_Modules_Aws_Storages_Basicstorage(t *testing.T) {
+func Test_Terraform_Modules_Aws_Storages_WebsiteStorage(t *testing.T) {
 	tfOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../../../../../modules/aws/storages/basic_stroage",
+		TerraformDir: "../../../../../modules/aws/storages/website_storage",
 		VarFiles:     []string{"./sample.tfvars"},
 	})
 
