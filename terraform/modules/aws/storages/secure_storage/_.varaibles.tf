@@ -9,7 +9,6 @@ variable "region" {
   description = "aws configuration region name"
 }
 
-
 # [Structure]
 variable "prefix" {
   type        = string
@@ -45,10 +44,15 @@ variable "suffix" {
 
 
 # [Resource]
-variable "bucket_name" {
-  type = string
-}
+variable "bucket_name" { type = string }
+variable "bucket_distribution_arn" { type = string }
+variable "bucket_tags" { type = map(any) }
 
-variable "tags" {
-  type = map(any)
+variable "bucket_cors_rules" {
+  type = list(object({
+    allowed_headers = list(string),
+    allowed_methods = list(string),
+    allowed_origins = list(string),
+    expose_headers  = list(string)
+  }))
 }
