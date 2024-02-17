@@ -45,7 +45,7 @@ variable "suffix" {
 
 
 # [Resource]
-variable "module_name" {
+variable "bucket_name" {
   type = string
 }
 
