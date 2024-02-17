@@ -1,4 +1,4 @@
-profile="edint_xinics"
+profile="aws_profile"
 region="ap-northeast-2"
 
 prefix="lay-prod"

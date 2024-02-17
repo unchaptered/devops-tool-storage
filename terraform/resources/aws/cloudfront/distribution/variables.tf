@@ -89,8 +89,8 @@ variable "default_cache_behavior_block" {
     trusted_key_groups = list(string)
 
     is_enabled_forwarded_values = bool
-    query_string                = bool
-    cookies_foward              = string
+    cookies_foward              = bool
+    query_string                = string
   })
 
   default = {
@@ -111,8 +111,8 @@ variable "default_cache_behavior_block" {
 
 
     is_enabled_forwarded_values = false
-    query_string                = false
-    cookies_foward              = "none"
+    cookies_foward              = false
+    query_string                = "none"
   }
 }
 
@@ -147,7 +147,7 @@ variable "viewer_certificate_block" {
 variable "custom_error_responses" {
   type = list(object({
     error_caching_min_ttl = number
-    error_cod             = number
+    error_code            = number
     response_code         = number
     response_page_path    = string
   }))

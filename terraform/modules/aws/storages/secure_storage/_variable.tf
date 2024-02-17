@@ -9,7 +9,6 @@ variable "region" {
   description = "aws configuration region name"
 }
 
-
 # [Structure]
 variable "prefix" {
   type        = string
@@ -43,11 +42,20 @@ variable "suffix" {
   }
 }
 
-# [Resources]
+
+# [Resource]
 variable "bucket_name" { type = string }
-variable "cf_dist_aliases" { type = list(string) }
-variable "cf_dist_certificate_arn" { type = string }
-
+variable "bucket_distribution_arn" { type = string }
 variable "bucket_tags" { type = map(any) }
-variable "cf_dist_tags" { type = map(any) }
+variable "bucket_cors_rules" {
+  type = list(object({
+    allowed_headers = list(string),
+    allowed_methods = list(string),
+    allowed_origins = list(string),
+    expose_headers  = list(string)
+  }))
+}
 
+
+variable "cf_distribution_tags" { type = map(any) }
+variable "cf_distribution_trusted_key_groups" { type = list(string) }

@@ -55,7 +55,7 @@ resource "aws_cloudfront_distribution" "resource" {
   }
 
   dynamic "custom_error_response" {
-    for_each = var.custom_error_responses
+    for_each = var.custom_error_responses != null ? var.custom_error_responses : []
 
     content {
       error_caching_min_ttl = custom_error_response.value.error_caching_min_ttl

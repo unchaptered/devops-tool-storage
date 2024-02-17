@@ -38,4 +38,10 @@ go test -v $(go list ./...)
 for /f %i in ('go list ./...') do go run -v %i
 for /f %i in ('go list ./...') do go test -v %i
 for /f %i in ('go list ./...') do go test -coverprofile=coverage.out -v %i
+
+
+for /f %i in ('go list ./... ^| findstr data') do go test -v %i
+for /f %i in ('go list ./... ^| findstr local') do go test -v %i
+for /f %i in ('go list ./... ^| findstr resources') do go test -v %i
+for /f %i in ('go list ./... ^| findstr modules') do go test -v %i
 ```

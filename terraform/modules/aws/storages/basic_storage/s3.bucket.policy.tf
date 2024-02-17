@@ -2,6 +2,7 @@ module "s3_bucket_policy" {
   source = "../../../../resources/aws/s3/bucket_policy"
 
   bucket = module.s3_bucket.bucket
+
   policy = {
     Version = "2008-10-17",
     Id      = "PolicyForCloudFrontPrivateContent",
@@ -36,6 +37,6 @@ module "s3_bucket_policy" {
 
     ]
   }
-  depends_on = [module.s3_bucket]
 
+  depends_on = [module.s3_bucket]
 }
