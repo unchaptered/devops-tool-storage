@@ -4,8 +4,7 @@
 
 TF Storage Modules support to deploy serverless modules.
 
-- [Asset Storage](./asset_storage/README.md)
-- [Basic Storage](./basic_stroage/README.md)
-- [Website Storage](./website_storage/README.md)
-- [Video Complex Storage](./video_complex_storage/README.md)
-- [Video Simple Storage](./video_simple_storage/README.md)
+1. [Basic Storage](./basic_stroage/README.md)
+2. [Asset Storage](./asset_storage/README.md)
+3. [Secure Storage](./secure_stroage/README.md)
+4. [Website Storage](./website_storage/README.md)
