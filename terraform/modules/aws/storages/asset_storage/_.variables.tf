@@ -49,6 +49,6 @@ variable "bucket_name" {
   type = string
 }
 
-variable "tags" {
+variable "bucket_tags" {
   type = map(any)
 }
