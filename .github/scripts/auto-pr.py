@@ -99,8 +99,8 @@ def getPullRequestTemplate(
     isSuccess, out, err = splitRunner(splitedCommand=splitedCommand)
     commitList = out.split('\n')
 
-    tokenKeys = ['create', 'update', 'fix']
-    tokenValues = ['enhancement', 'enhancement', 'bug']
+    tokenKeys = ['create', 'update', 'fix', 'test']
+    tokenValues = ['enhancement', 'enhancement', 'bug', 'test']
     labelList = []
     for commit in commitList:
         for idx, tokenKey in enumerate(tokenKeys):
