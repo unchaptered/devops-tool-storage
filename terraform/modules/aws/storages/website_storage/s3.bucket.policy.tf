@@ -23,7 +23,7 @@ module "s3_website_bucket_policy" {
     ]
   }
   depends_on = [
-    module.s3_website,
+    module.s3_bucket,
     module.cf_dist_website
   ]
 

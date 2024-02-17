@@ -36,6 +36,9 @@ module "cf_dist_website" {
     allowed_methods             = ["GET", "HEAD", "OPTIONS"]
     cached_methods              = ["GET", "HEAD", "OPTIONS"]
     is_enabled_forwarded_values = false
+
+    cookies_foward = false
+    query_string   = "none"
   }
 
   custom_error_responses = [
