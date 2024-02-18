@@ -47,7 +47,8 @@ variable "suffix" {
 variable "eb_sch_module_name" { type = string }
 variable "eb_sch_expression" { type = string }
 
-variable "eb_sch_lambda_tags" { type = map(any) }
 variable "eb_sch_labmda_vpc_id" { type = string }
 variable "eb_sch_labmda_subnet_ids" { type = list(string) }
+
+variable "eb_sch_lambda_tags" { type = map(any) }
 variable "eb_sch_lambda_sg_tags" { type = map(any) }
