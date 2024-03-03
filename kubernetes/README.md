@@ -14,7 +14,7 @@ vagrant destroy <NAME\>
 vagrant provision <NAME\>
 ```
 
-## Installation
+<!-- ## Installation
 
 1. Install helm
     ```shell
@@ -23,5 +23,4 @@ vagrant provision <NAME\>
 2. [Install on Windows using Chocolatey, Scoop, or winget](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/#install-nonstandard-package-tools)
     ```shell
     choco install kubernetes-cli
-    ```
-3. 
+    ``` -->
