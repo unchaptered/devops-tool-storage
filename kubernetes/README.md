@@ -14,6 +14,11 @@ vagrant destroy <NAME\>
 vagrant provision <NAME\>
 ```
 
+## Index
+
+1. [First Basic Kubernetes](./1_basic_kubernetes/)
+2. [Second Basic Kubernetes](./2_basic_kubernetes/)
+
 <!-- ## Installation
 
 1. Install helm
