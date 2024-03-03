@@ -2,6 +2,8 @@
 
 # Kubernetes Structure
 
+<img src="001.png" style="width: 600px;">
+
 ## Element of Kubernetes
 
 - `api` : The "api" is the central control plane component that manages all operations within a kubernetes cluster. You can handle resource to create, modify, search using "api".
