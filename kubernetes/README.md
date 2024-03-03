@@ -18,6 +18,7 @@ vagrant provision <NAME\>
 
 1. [First Basic Kubernetes](./1_basic_kubernetes/)
 2. [Second Basic Kubernetes](./2_basic_kubernetes/)
+3. [Kubernetes Structure](./3_kubernetes_structure/)
 
 <!-- ## Installation
 
