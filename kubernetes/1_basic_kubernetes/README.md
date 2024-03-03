@@ -323,3 +323,13 @@ kubectl get pods -o wide
 # deploy-nginx-67c78b5cfc-f6z52   1/1     Running   2 (8m9s ago)   16h     172.16.221.134   w1-k8s   <none>           <none>
 # deploy-nginx-67c78b5cfc-w2d58   1/1     Running   0              5m38s   172.16.221.136   w1-k8s   <none>           <none>
 ```
+
+## 5. Clean up
+
+```shell
+kubectl delete service <SERVICE_NAME>
+
+kubectl delete deployment <DEPLOYMENT_NAME>
+
+kubectl delete -f ~/_Lecture_k8s_starter.kit/ch2/2.4/metallb.yaml
+```
