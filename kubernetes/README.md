@@ -1,4 +1,4 @@
-[< Backawrd](../README.md)
+[< Backaward](../README.md)
 
 # Kubernetes
 
@@ -16,9 +16,9 @@ vagrant provision <NAME\>
 
 ## Index
 
-1. [First Basic Kubernetes](./1_basic_kubernetes/)
-2. [Second Basic Kubernetes](./2_basic_kubernetes/)
-3. [Kubernetes Structure](./3_kubernetes_structure/)
+1. [First Basic Kubernetes](./1_basic_kubernetes/README.md)
+2. [Second Basic Kubernetes](./2_basic_kubernetes/README.md)
+3. [Kubernetes Structure](./3_kubernetes_structure/README.md)
 
 <!-- ## Installation
 
