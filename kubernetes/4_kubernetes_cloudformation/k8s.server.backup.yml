@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d-myeks-app-ecr
+
+spec:
+  selector:
+    matchLabels:
+      app: myeks_app_ecr
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: myeks_app_ecr
+
+    spec:
+      containers:
+      - name: main
+        image: <AWS_ACCOUNT>.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-myeks-app-ecr
+
+spec:
+  selector:
+    app: myeks_app_ecr
+  
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: http
+
+  type: ClusterIP

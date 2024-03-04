@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myeks-ingress
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  #   spec.ingressClassName: nginx
+    
+spec:
+  rules:
+    - host: kubernetes.docker.internal
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: svc-myeks-app-ecr
+              port:
+                number: 80
+  ingressClassName: nginx
+            # serviceName: svc-myeks-app-ecr
+            # servicePort: 80
+---
+# apiVersion: networking.k8s.io/v1
+# kind: IngressClass
+# metadata:
+#   name: nginx
+#   annotations:
+#     kubectl.kubernetes.io/last-applied-configuration: |
+#       {"apiVersion":"networking.k8s.io/v1","kind":"IngressClass","metadata":{"annotations":{},"name":"nginx"},"spec":{"controller":"k8s.io/ingress-nginx"}}  # IngressClass에 누락된 annotation 추가
+# spec:
+#   controller: k8s.io/ingress-nginx
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+spec:
+  controller: k8s.io/ingress-nginx
