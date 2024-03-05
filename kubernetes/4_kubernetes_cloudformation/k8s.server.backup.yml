@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: main
-        image: <AWS_ACCOUNT>.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
+        image: 721509753078.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80

@@ -128,6 +128,8 @@ helm repo update
 # 7.2. Install nginx-ingress using helm
 helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true
 
+helm install nginx-ingress-controller nginx-ingress/nginx-ingress-controller -f helm.nginx.ingress.controller.yml
+
 kubectl get services nginx-ingress-controller
 ```
 
@@ -168,8 +170,8 @@ docker build -t myeks_app_ecr .
 docker tag myeks_app_ecr <ECR_URI>
 docker push <ECR_URI>
 
-docker tag myeks_app_ecr <AWS_ACCOUNT>.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
-docker push <AWS_ACCOUNT>.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
+docker tag myeks_app_ecr <ACCOUNT_ID>.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
+docker push <ACCOUNT_ID>.dkr.ecr.ap-northeast-2.amazonaws.com/myeks_app_ecr:latest
 ```
 
 ### 10. Create K8S Deployment (EC2, ClientHost)
