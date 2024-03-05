@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress-controller
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    spec.ingressClassName: nginx
+    
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: svc-myeks-app-ecr
+              port:
+                number: 80
+            # serviceName: svc-myeks-app-ecr
+            # servicePort: 80

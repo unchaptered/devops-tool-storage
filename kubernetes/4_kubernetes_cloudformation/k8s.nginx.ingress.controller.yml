@@ -1,0 +1,88 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-myeks-app
+spec:
+  rules:
+    - host: kubernetes.docker.internal
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myeks-app
+                port:
+                  number: 60
+  ingressClassName: nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+
+spec:
+  controller: k8s.io/ingress-nginx
+
+
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nginx-ingress-controller
+#   # namespace: kube-system
+
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: nginx-ingress-controller
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx-ingress-controller
+#     spec:
+#       containers:
+#       - name: nginx-ingress-controller
+#         image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:latest
+#         args:
+#           - /nginx-ingress-controller
+#           - --configmap=$(POD_NAMESPACE)/nginx-ingress-controller-conf
+#           - --publish-service=$(POD_NAMESPACE)/nginx-ingress-controller
+#         env:
+#           - name: POD_NAME
+#             valueFrom:
+#               fieldRef:
+#                 fieldPath: metadata.name
+#           - name: POD_NAMESPACE
+#             valueFrom:
+#               fieldRef:
+#                 fieldPath: metadata.namespace
+
+#         ports:
+#         - name: http
+#           containerPort: 80
+#         - name: https
+#           containerPort: 443
+
+# ---
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-ingress-controller
+#   # namespace: kube-system
+# spec:
+#   type: NodePort
+#   ports:
+#     - name: http
+#       port: 80
+#       targetPort: 80
+#       nodePort: 30080  # 원하는 포트로 변경할 수 있습니다.
+#     - name: https
+#       port: 443
+#       targetPort: 443
+#       nodePort: n30443  # 원하는 포트로 변경할 수 있습니다.
+      
+#   selector:
+#     app: nginx-ingress-controller
