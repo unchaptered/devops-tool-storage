@@ -14,20 +14,20 @@ curl -s ipinfo.io/ip
 
 ```cmd
 # Win, Cmd
-for /f %i in ('curl -s ipinfo.io/ip') do aws cloudformation deploy                          ^
-    --template-file ./myeks-1week.yaml                                                      ^
-    --stack-name myeks                                                                      ^
-    --parameter-overrides KeyName=myeks-pem SgIngressSshCidr=%i/32                          ^
-    --region ap-northeast-2                                                                 ^
+for /f %i in ('curl -s ipinfo.io/ip') do aws cloudformation deploy  ^
+    --template-file ./myeks-1week.yaml                              ^
+    --stack-name myeks                                              ^
+    --parameter-overrides KeyName=myeks-pem SgIngressSshCidr=%i/32  ^
+    --region ap-northeast-2                                         ^
     --profile eksprac
 ```
 ```shell
 # Ubuntu, Shell
-aws cloudformation deploy                                                                   \
-    --template-file         ./myeks-1week.yaml                                              \
-    --stack-name            myeks                                                           \
+aws cloudformation deploy                        \
+    --template-file         ./myeks-1week.yaml   \
+    --stack-name            myeks                \
     --parameter-overrides   KeyName=myeks-pem SgIngressSshCidr=$(curl -s ipinfo.io/ip)/32   \
-    --region                ap-northeast-2                                                  \
+    --region                ap-northeast-2       \
     --profile               eksprac
 ```
 
@@ -37,14 +37,14 @@ aws cloudformation deploy                                                       
 
 ```cmd
 # Win, Cmd
-for /f %i in ('aws ec2 describe-instances --filters "Name=tag:Name,Values=myeks-host"       ^
-                            --query "Reservations[0].Instances[0].PublicIpAddress"          ^
+for /f %i in ('aws ec2 describe-instances --filters "Name=tag:Name,Values=myeks-host" ^
+                            --query "Reservations[0].Instances[0].PublicIpAddress"    ^
                             --profile eksprac') do ssh root@%i
 ```
 ```shell
 # Ubuntu, Shell
-ssh root@$(aws ec2 describe-instances --filters "Name=tag:Name,Values=myeks-host"           \
-                            --query "Reservations[0].Instances[0].PublicIpAddress"          \
+ssh root@$(aws ec2 describe-instances --filters "Name=tag:Name,Values=myeks-host"  \
+                            --query "Reservations[0].Instances[0].PublicIpAddress" \
                             --profile eksprac)
 ```
 
@@ -182,4 +182,12 @@ kubectl apply -f k8s.server.yml
 kubectl expose deployment d-myeks-app-ecr --name svc-myeks-app-ecr --port=80 --target-port=80 --type=LoadBalancer
 
 kubectl apply -f k8s.nginx.ingress.controller.yml
+```
+
+### 11. Delete all resources (EC2, ClientHost -> LocalHost)
+
+```shell
+eksctl delete cluster --name $CLUSTER_NAME
+
+aws cloudformation delete-stack --stack-name myeks
 ```
