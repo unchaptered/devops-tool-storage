@@ -1,6 +1,6 @@
 resource "aws_iam_role" "resource" {
   name               = var.name # "example_role"
-  assume_role_policy = jsonencode(var.assume_role_policy)
+  assume_role_policy = var.assume_role_policy
 
   managed_policy_arns = var.managed_policy_arns
 
