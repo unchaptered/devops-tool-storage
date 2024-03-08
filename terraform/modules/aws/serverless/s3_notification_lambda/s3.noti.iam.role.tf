@@ -2,16 +2,17 @@ module "s3_noti_iam_role" {
     source = "../../../../resources/aws/iam/role"
 
     name = "${var.prefix}-iam-role-${var.module_name}-${var.suffix}"
-    assume_role_policy = {
-        Version = "2012-10-17",
-        Statement = [
-        {
-            Action    = ["sts:AssumeRole"],
-            Effect    = "Allow",
-            Principal = { Service = "lambda.amazonaws.com" }
-        }
-        ]
-    }
+    assume_role_policy = module.s3_noti_iam_policy_doucment.json
+    # assume_role_policy = {
+    #     Version = "2012-10-17",
+    #     Statement = [
+    #     {
+    #         Action    = ["sts:AssumeRole"],
+    #         Effect    = "Allow",
+    #         Principal = { Service = "lambda.amazonaws.com" }
+    #     }
+    #     ]
+    # }
 
     managed_policy_arns = []
 

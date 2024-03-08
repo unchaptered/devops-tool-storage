@@ -4,16 +4,7 @@ variable "name" {
 }
 
 variable "assume_role_policy" {
-  type = object({
-    Version = string
-    Statement = list(object({
-      Action = list(string)
-      Effect = string
-      Principal = object({
-        Service = string
-      })
-    }))
-  })
+  type = string
 }
 
 variable "managed_policy_arns" {
