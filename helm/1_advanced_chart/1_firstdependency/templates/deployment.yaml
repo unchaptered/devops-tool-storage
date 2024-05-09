@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "1_firstchart.fullname" . }}
+  name: {{ include "1_firstdependency.fullname" . }}
   labels:
-    {{- include "1_firstchart.labels" . | nindent 4 }}
+    {{- include "1_firstdependency.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "1_firstchart.selectorLabels" . | nindent 6 }}
+      {{- include "1_firstdependency.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "1_firstchart.labels" . | nindent 8 }}
+        {{- include "1_firstdependency.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "1_firstchart.serviceAccountName" . }}
+      serviceAccountName: {{ include "1_firstdependency.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
