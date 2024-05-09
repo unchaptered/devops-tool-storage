@@ -1,0 +1,7 @@
+# Dependency Files
+*.tgz
+*.zip
+*.gzip
+
+# Lock Files
+Chart.lock
