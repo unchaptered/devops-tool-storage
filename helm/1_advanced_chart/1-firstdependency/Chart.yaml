@@ -1,5 +1,5 @@
 apiVersion: v2
-name: 1_firstdependency
+name: 1-firstdependency
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -25,5 +25,5 @@ appVersion: "1.16.0"
 
 dependencies:
   - name: mysql
-    version: "8.8.6"
+    version: "10.2.2"
     repository: "http://charts.bitnami.com/bitnami"

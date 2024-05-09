@@ -1,0 +1,5 @@
+*.gzip
+*.tgz
+*.zip
+
+Chart.lock
